@@ -1,0 +1,13 @@
+{
+  "full_name": "Jinlong Allen Chen",
+  "email": "a3linux@gmail.com",
+  "github_username": "a3linux",
+  "project_name": "pipenv_aws-lambda_template",
+  "project_slug": "{{ cookiecutter.project_name.lower().replace(' ', '_').replace('-', '_') }}",
+  "project_short_description": "A simple AWS Lambda python project managed by pipenv",
+  "version": "0.1.0",
+  "aws_lambda_entry": "lambda_handler",
+  "aws_lambda_entry_filename": "aws_lambda_entry",
+  "aws_lambda_package_name": "aws_lambda_upload",
+  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]
+}
