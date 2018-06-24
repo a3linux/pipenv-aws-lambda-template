@@ -1,0 +1,31 @@
+Environment:
+  Description: Deployment environment
+  Type: String
+  Default: dev
+  AllowedValues:
+    - dev
+    - stg
+    - prd
+LambdaHandler:
+  Description: AWS Lambda Hanlder name(The python function name), default is {{cookiecutter.aws_lambda_entry}}
+  Type: String
+  Default: {{cookiecutter.aws_lambda_entry}}
+LambdaMemorySize:
+  Description: Memory size of Lambda function, in MB, Default is 512
+  Type: Number
+  Default: 512
+  MinValue: 128
+  MaxValue: 1536
+LambdaTimeout:
+  Description: Timeout of Lambda Function, in seconds default is 300(5min)
+  Type: Number
+  Default: 300
+  MaxValue: 300
+SourceBucket:
+  Description: Lambda Source file(package) stored S3 Bucket
+  Type: String
+  Default: {{cookiecutter.deployment_s3_bucket}}
+SourceFilePath:
+  Description: Lambda Source package prefix in S3
+  Type: String
+  Default: {{cookiecutter.deployment_s3_prefix}}

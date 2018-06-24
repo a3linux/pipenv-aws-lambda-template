@@ -1,0 +1,12 @@
+{{cookiecutter.cloudformation_template_name}}Trigger:
+  Type: "AWS::Events::Rule"
+  Properties:
+    Description: Trigger of {{cookiecutter.cloudformation_template_name}}
+    ScheduleExpression: rate(7 days)
+    State: ENABLED
+    Targets:
+      -
+        Arn: !GetAtt
+          - {{cookiecutter.cloudformation_template_name}}LambdaFunction
+          - Arn
+        Id: {{cookiecutter.cloudformation_template_name}}LambdaFunction

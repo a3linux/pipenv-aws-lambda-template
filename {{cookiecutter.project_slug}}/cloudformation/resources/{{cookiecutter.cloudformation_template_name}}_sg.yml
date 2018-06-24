@@ -1,0 +1,11 @@
+{{cookiecutter.cloudformation_template_name}}SecurityGroup:
+  Type: "AWS::EC2::SecurityGroup"
+  Properties:
+    GroupDescription: Security Group of {{cookiecutter.cloudformation_template_name}}
+    Tags:
+      - Key: Name
+        Value: {{cookiecutter.cloudformation_template_name}}SecurityGroup
+    VpcId: !FindInMap
+      - VPCMapping
+      - !Ref Environment
+      - vpcid

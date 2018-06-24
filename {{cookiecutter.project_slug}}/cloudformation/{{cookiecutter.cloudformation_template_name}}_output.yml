@@ -1,0 +1,3 @@
+LambdaFunctionName:
+  Value: !Ref {{cookiecutter.cloudformation_template_name}}LambdaFunction
+  Description: {{cookiecutter.cloudformation_template_name}} Lambda Function

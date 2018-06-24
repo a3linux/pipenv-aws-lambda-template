@@ -8,6 +8,13 @@
   "version": "0.1.0",
   "aws_lambda_entry": "lambda_handler",
   "aws_lambda_entry_filename": "aws_lambda_entry",
-  "aws_lambda_package_name": "aws_lambda_upload",
-  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"]
+  "aws_lambda_package_name": "aws_lambda_deployment",
+  "cloudformation_template_name": "aws_cf_{{ cookiecutter.project_slug }}",
+  "cloudformation_template_description": "CloudFormation Template of {{ cookiecutter.project_slug }}",
+  "deployment_s3_bucket": "com.company_name.lambda_deploy",
+  "deployment_s3_prefix": "/lambda/{{ cookiecutter.project_slug }}/",
+  "open_source_license": ["MIT license", "BSD license", "ISC license", "Apache Software License 2.0", "GNU General Public License v3", "Not open source"],
+  "_copy_without_render":[
+    "cloudformation/*.tpl"
+  ]
 }

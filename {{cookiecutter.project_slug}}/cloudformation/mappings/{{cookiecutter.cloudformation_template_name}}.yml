@@ -1,0 +1,6 @@
+VPCMapping:
+  dev:
+    vpcid: vpc-xxxxxx
+SubnetMapping:
+  dev:
+    subnets: subnet-xxxxxx

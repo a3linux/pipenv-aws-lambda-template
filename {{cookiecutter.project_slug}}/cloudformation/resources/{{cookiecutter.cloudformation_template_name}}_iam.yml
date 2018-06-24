@@ -1,0 +1,58 @@
+{{cookiecutter.cloudformation_template_name}}LambdaRole:
+  Type: "AWS::IAM::Role"
+  Properties:
+    Path: /
+    AssumeRolePolicyDocument:
+      Version: 2012-10-17
+      Statement:
+        - Effect: Allow
+          Principal:
+            Service:
+              - lambda.amazonaws.com
+          Action:
+            - 'sts:AssumeRole'
+    ManagedPolicyArns:
+      - "arn:aws:iam::aws:policy/CloudWatchEventsFullAccess"
+      - "arn:aws:iam::aws:policy/AmazonSESFullAccess"
+      - "arn:aws:iam::aws:policy/AWSCloudFormationReadOnlyAccess"
+    Policies:
+      - PolicyName: SourceS3AccessPolicy
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - "s3:Get*"
+                - "s3:List*"
+              Resource:
+                - !Join
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - !Ref SourceBucket
+                - !Join
+                  - ""
+                  - - "arn:aws:s3:::"
+                    - !Ref SourceBucket
+                    - "/*"
+      - PolicyName: LogsPolicy
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - "logs:CreateLogGroup"
+                - "logs:CreateLogStream"
+                - "logs:PutLogEvents"
+              Resource:
+                - "arn:aws:logs:*:*:*"
+      - PolicyName: EC2Policy
+        PolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Action:
+                - "ec2:Describe*"
+                - "ec2:CreateNetworkInterface"
+                - "ec2:DeleteNetworkInterface"
+              Resource:
+                - "*"

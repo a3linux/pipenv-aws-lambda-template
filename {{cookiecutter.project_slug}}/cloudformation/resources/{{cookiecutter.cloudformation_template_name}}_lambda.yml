@@ -1,0 +1,39 @@
+{{cookiecutter.cloudformation_template_name}}LambdaFunction:
+  Type: "AWS::Lambda::Function"
+  Properties:
+    Description: {{cookiecutter.cloudformation_template_name}} Function
+    Code:
+      S3Bucket: !Ref SourceBucket
+      S3Key: !Ref SourceFilepath
+    Environment:
+      Variables:
+        environment: !Ref Environment
+        CONFIG_FILE: ""
+    Handler: !Ref LambdaHandler
+    MemorySize: !Ref LambdaMemorySize
+    Role: !GetAtt
+      - {{cookiecutter.cloudformation_template_name}}LambdaRole
+      - Arn
+    Runtime: python3.6
+    Timeout: !Ref LambdaTimeout
+    VpcConfig:
+      SecurityGroupIds:
+        - !Ref {{cookiecutter.cloudformation_template_name}}SecurityGroup
+      SubnetIds: !Split
+        - ","
+        - !FindInMap
+          - SubnetsMapping
+          - !Ref Environment
+          - subnets
+    Tags:
+      - Key: Env
+        Value: !Ref Environment
+{{cookiecutter.cloudformation_template_name}}LambdaPermission:
+  Type: "AWS::Lambda::Permission"
+  Properties:
+    FunctionName: !Ref {[cookiecutter.cloudformation_template_name]}LambdaFunction
+    Action: "lambda:InvokeFunction"
+    Principal: events.amazonaws.com
+    SourceArn: !GetAtt
+      - {{cookiecutter.cloudformation_template_name}}Trigger
+      - Arn
