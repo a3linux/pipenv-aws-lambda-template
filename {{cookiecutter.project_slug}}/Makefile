@@ -27,3 +27,4 @@ build:
 	$(eval VENV = $(shell pipenv --venv))
 	cd ${VENV}/lib/python3.6/site-packages && zip -r9 ${DELIVERABLE} ./*
 	zip -r9 ${DELIVERABLE} *.py
+	cd cloudformation && jinja2 {{cookiecutter.cloudformation_template_name}}.yml.tpl > {{cookiecutter.cloudformation_template_name}}.yml
