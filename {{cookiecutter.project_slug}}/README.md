@@ -38,6 +38,26 @@ The first time only:
 - Review all the details and confirm creation
 - Run it!
 
+### Deploy with AWS CloudFormation
+
+This template include a very simple AWS Cloudformation Template and can be used as following steps,
+
+- Please confirm the dev packages are installed by command,
+
+```
+> pipenv install -d
+```
+- Generate the Cloudformation template with this command,
+
+```
+> cd cloudformation
+> jinja2 {{cookiecutter.cloudformation_template_name}}.yml.tpl > {{cookiecutter.cloudformation_template_name}}.yml
+```
+- Deploy the Cloudformation stack with the template by AWS Cli or Management console
+- **NOTICE**: The template need some parameters such as S3 bucket, prefix to hold the Lambda package and so forth, please check the generated template and make your own changes.
+
+In future we will put more features with CloudFormation template, include deployment with AWS Codepipe.
+
 ### Next steps
 
 - Add any third party package you might need using `pipenv install ...`
