@@ -21,6 +21,8 @@ The first time only:
 - `make build`: Collect dependencies and entry point script into a
   [deployment package](http://docs.aws.amazon.com/lambda/latest/dg/lambda-python-how-to-create-deployment-package.html)
 
+  **NOTICE**: This step will try to build(jinja2) the cloudformation template too.
+
   By default, it'll be a `{{cookiecutter.aws_lambda_package_name}}.zip` in the root of the project.
 
   The target is customisable and may be provided on the command line:
