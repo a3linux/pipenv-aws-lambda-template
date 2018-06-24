@@ -8,7 +8,7 @@ DELIVERABLE=$(abspath $(OUT_FILE))
 
 # Install all the libs locally
 install:
-	pipenv install --three
+	pipenv sync -d
 
 # Destroy the virtualenv
 uninstall:
